@@ -6,9 +6,10 @@ This program is used to analyze C++ GitHub repositories.
 The goal is to be able to find out if there is a correlation between developers with higher "experience", and a more frequent use of advanced code features.  
 The advanced code features this program will look at are lambdas and smart pointers.  
   
-The program takes a number of GitHub repositories as input, and places the analyzed results inside a JSON file.    
+The program takes a number of GitHub repositories as input, and places the analyzed results inside a JSON file.  
   
   
+
 ## How to use the program  
 
 The program will take a number of GitHub repositories as input, and place the analyzed results inside a JSON file.  
