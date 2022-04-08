@@ -7,7 +7,8 @@ The goal is to be able to find out if there is a correlation between developers 
 The advanced code features this program will look at are lambdas and smart pointers.  
   
 The program takes a number of GitHub repositories as input, and places the analyzed results inside a JSON file.    
-
+  
+  
 ## How to use the program  
 
 The program will take a number of GitHub repositories as input, and place the analyzed results inside a JSON file.  
@@ -25,6 +26,7 @@ url2
 ...
 
 ```
+  
 
 ## How to build on Linux  
   
