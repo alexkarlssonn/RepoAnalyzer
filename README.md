@@ -2,37 +2,29 @@
 
 ## About
   
-This program is used to analyze C++ GitHub repositories from the perspective of a given GitHub user.  
+This program is used to analyze C++ GitHub repositories.  
+The goal is to be able to find out if there is a correlation between developers with higher "experience", and a more frequent use of advanced code features.  
+The advanced code features this program will look at are lambdas and smart pointers.  
   
-It will calculate and output the following for each repository:  
- * MRE (The average time a contributor has spent working on the repository)
- * URE (Which percentile the given user falls into, for the time spent working on the repository)
- * Number of lambdas used by the given user
- * Number of commits made by the given user
- * Average lambdas per commit made by the given user  
-  
-These values can be used to research if more experienced developers (higher URE values)  
-uses lambdas more than less experienced developers (lower URE values).  
-When researching this, it will probably be a good idea to only look at more "competetive" repositories.  
-That means repositories that are popular, has a lot of contributors, and/or a high MRE value.
-  
+The program takes a number of GitHub repositories as input, and places the analyzed results inside a JSON file.    
 
 ## How to use the program  
 
-The program will take a GitHub user as input, and all analyzing will be from the perspecitive of this user.  
+The program will take a number of GitHub repositories as input, and place the analyzed results inside a JSON file.  
 Before starting the program, place all C++ repositories you want to be analyzed inside the file: PLACE_REPOS_HERE.txt  
-Only include repositories that the given user has contributed to.  
+Only include C++ repositories since all other repositories will be ignored.  
   
 PLACE_REPOS_HERE.txt  
-Place the full URL's of the repositories here. One repository per line
+Place the full URL's of the repositories here. One repository per line  
+If you want to include line commments, then use the '#' character.
 ```
 https://github.com/randomusername/randomreponame
 url2
 url2
+# This is a comment, this line will be skipped
 ...
 
 ```
-
 
 ## How to build on Linux  
   
@@ -49,6 +41,7 @@ install libgit2 (apt install libgit2-dev)
 install curl for openssl (apt install libcurl4-openssl-dev)  
 Download Github User Repository Analyser (git clone https://github.com/marcusroos1904/github-user-repository-analyser.git)  
 Once finished > cd to github user repository analyser root > 'make'  
+Place the repos you want to analyze inside PLACE_REPOS_HERE.txt  
 Run the program!  
   
 
@@ -69,6 +62,7 @@ If it was installed somwhere else, or if the version number is different, then y
 Once these libraries have been installed:  
 Download Github User Repository Analyser (git clone https://github.com/marcusroos1904/github-user-repository-analyser.git)  
 Once finished > cd to github user repository analyser root > 'make'  
+Place the repos you want to analyze inside PLACE_REPOS_HERE.txt  
 Run the program!  
   
 

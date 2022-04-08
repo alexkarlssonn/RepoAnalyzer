@@ -232,6 +232,7 @@ static int countLambdasAndSmartPointers(const std::string& file, int* lambda_cou
 {
 	std::vector<std::string> validFileExtensions = getValidFileExtensions();
 	std::regex lambda_regex(R"([\,\=\s\(\)]*[\,\=\s\t\(\)]+\[[a-zA-Z0-9\*\,_&\s=:<>]*\]\s*(\(|\{))", std::regex::optimize);
+	std::regex smartptr_regex(R"(unique_ptr|auto_ptr|shared_ptr|weak_ptr)", std::regex::optimize);
 
 	// Open the diff file
 	std::ifstream fromFile(file);
@@ -283,15 +284,17 @@ static int countLambdasAndSmartPointers(const std::string& file, int* lambda_cou
 			        // Skip '/*' comments
 			        if ((stringPos = line.find("/*")) != std::string::npos) 
 			        {
+			        	std::string substring = line.substr(0, stringPos);
+
 			            // Check for lambda before the block comment    
-			            std::string substring = line.substr(0, stringPos);
 			            if (std::regex_search(substring, lambda_regex)) {
 			                *lambda_counter += 1;
 			            }
 
-
-			            // TODO: Check for smart pointers
-
+			            // Check for smart pointer before the block comment 
+			            if (std::regex_search(substring, smartptr_regex)) {
+			            	*smartPointer_counter += 1;
+			            }
 
 			            // If '*/' is not found on this line, that means the following lines will be inside a block comment
 			            if (line.find("*/") == std::string::npos) {
@@ -302,23 +305,29 @@ static int countLambdasAndSmartPointers(const std::string& file, int* lambda_cou
 			        // Skip '//' comments
 			        else if ((stringPos = line.find("//")) != std::string::npos) 
 			        {
+			        	std::string substring = line.substr(0, stringPos);
+
 			            // Check for lambda before the line comment    
-			            std::string substring = line.substr(0, stringPos);
 			            if (std::regex_search(substring, lambda_regex)) {
 			                *lambda_counter += 1;
 			            }
 
-			            // TODO: Check for smart pointers
+			            // Check for smart pointer before the line comment
+			            if (std::regex_search(substring, smartptr_regex)) {
+			            	*smartPointer_counter += 1;
+			            }
 
 			        }
 
-			        // No code comment was found, just check the line for lambda
-			        else if (std::regex_search(line, lambda_regex)) {
-			            *lambda_counter += 1;
+			        // No code comment was found, just check the line for lambda and/or smart pointer
+			        else {
+			        	if (std::regex_search(line, lambda_regex)) {
+			        	    *lambda_counter += 1;
+			        	}
+			        	else if (std::regex_search(line, smartptr_regex)) {
+			        		*smartPointer_counter += 1;
+			        	}
 			        }
-
-			        // TODO: Check for smart pointers
-
 			    }
 			}
 		}

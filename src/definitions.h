@@ -19,7 +19,6 @@ struct AuthorData {
     double URE = 0.0;
 };
 
-int thesis_main();
 
 std::vector<std::string> loadRepoUrls();
 std::string extractRepoName(const std::string& url);
