@@ -3,22 +3,16 @@
 # Use the full URL to the GitHub repository, and place one on each line
 #
 
-# Below is a set of repositories that can be used to test against a given user
-# This is done so that you can easily test the program, to see how it works
-# without having to go around GitHub looking for users and C++ repositories
+# Below is a set of smaller repositories that can be used to test the program
 
-
-# TEST 1
-# Use username: rokups
 
 https://github.com/LoopPerfect/valuable
 https://github.com/fungos/cr
 https://github.com/rokups/ImNodes
 
+# Larger repos
 # https://github.com/mikke89/RmlUi
 # https://github.com/wolfpld/tracy
-
-
 # https://github.com/ocornut/imgui
 # https://github.com/urho3d/Urho3D
 # https://github.com/CedricGuillemet/ImGuizmo
@@ -26,14 +20,5 @@ https://github.com/rokups/ImNodes
 
 
 
-
-
-# TEST 2
-# Use username: Blindguard13
-# https://github.com/MarcusRoos/cpp_intro
-# https://github.com/MarcusRoos/cpp_objects
-# https://github.com/MarcusRoos/cpp_objects_advanced
-# https://github.com/MarcusRoos/Database
-# https://github.com/MarcusRoos/Designpatterns
 
 
