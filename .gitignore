@@ -1,0 +1,7 @@
+
+.DS_Store
+RepoAnalyser
+repos/*
+commit_diff.txt
+output.json
+
