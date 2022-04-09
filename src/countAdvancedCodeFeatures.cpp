@@ -222,10 +222,11 @@ int countAdvancedCodeFeatures(const std::string& repoPath, std::vector<AuthorDat
 /**
  * ------------------------------------------------------------------------------------------------
  * This function searches for, and counts lambdas and smart pointers for the given "git diff"-file
- * It only checks files that has a "valid" file extension, and also only counts lambdas that has been ADDED, according to the diff-file
+ * It only checks files that has a "valid" file extension, and also only counts lambdas/smart pointers that has been ADDED, according to the diff-file
  * 
- * Return a data structure containing the number of lambdas and smart pointers that was found
- * On error, the error_flag will be set to indicate that an error occured
+ * Sets the parameters "lambda_counter" and "smartPointer_counter" to the results.
+ *
+ * Returns 0 on success, and -1 on failure
  * ------------------------------------------------------------------------------------------------ 
  */
 static int countLambdasAndSmartPointers(const std::string& file, int* lambda_counter, int* smartPointer_counter)
