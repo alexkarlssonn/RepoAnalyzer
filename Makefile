@@ -22,3 +22,6 @@ all:
 
 clean:	
 	rm -rf $(TARGET)
+	rm -rf repos/
+	rm -rf commit_diff.txt
+

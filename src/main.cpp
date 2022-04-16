@@ -76,7 +76,7 @@ int main()
 		// ---------------------------------------------------------------
 		std::cout << "\nCloning repository (" << (i+1) << "/" << (allRepos.size()) << "): " << allRepos[i] << std::endl;
 		if (!validateUrl(allRepos[i].c_str())) {
-		    std::cerr << "ERROR! Invalid repository repo URL: " << allRepos[i] << std::endl;
+		    std::cerr << "ERROR! Invalid repository URL: " << allRepos[i] << std::endl;
 		    failedRepos.push_back(repoName);
 		    continue;
 		}

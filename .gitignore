@@ -4,4 +4,6 @@ RepoAnalyser
 repos/*
 commit_diff.txt
 output.json
+FAILED_REPOS.txt
+data-analysis/*
 

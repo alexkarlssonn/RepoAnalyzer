@@ -58,23 +58,24 @@ int countAdvancedCodeFeatures(const std::string& repoPath, std::vector<AuthorDat
 	    return -1;
 	}
 
-	// Try both master and main when reading HEAD
-	std::string path_master = path;
-	path_master += "/refs/heads/master";
-	std::string path_main = path;
-	path_main += "/refs/heads/main";
+	// Open the file for HEAD. Try different names for the main branch
+	std::string path_master;
+	FILE* head_fileptr = NULL;
+	std::vector<std::string> names{"master", "main", "develop", "development", "dev", "devel", "openssl", "ms", "Release", "release", "RELEASE", "lionAndLater", "v1.x", "4.0", "2022", "stable-6.0", "next", "webscalesql-5.6.27", "dist-ver", "stable", "nw62", "insp3"};
 
-	// Open the file for HEAD
-	FILE* head_fileptr;
-	if ((head_fileptr = fopen(path_master.c_str(), "r")) == NULL) {
-	    if ((head_fileptr = fopen(path_main.c_str(), "r")) == NULL) {
-	        std::cerr << "Failed to read HEAD. Error when opening file, tried both: " << path_master << ", and: " << path_main << std::endl;
-	        git_repository_free(repo);
-	        system(rm_command.c_str());
-	        return -1;
-	    }
-	    path_master = path_main;
+	for (int i = 0; i < names.size(); i++) {
+	    path_master = path + "/refs/heads/" + names[i];
+	    if ((head_fileptr = fopen(path_master.c_str(), "r")) != NULL) {
+	        break;
+	    } 
 	}
+	if (head_fileptr == NULL) {
+	    std::cerr << "Failed to read HEAD. Error when opening file for main branch" << std::endl;
+	    git_repository_free(repo);
+	    system(rm_command.c_str());
+	    return -1;
+	}
+
 
 	// Read the content of the file
 	char head_rev[41];

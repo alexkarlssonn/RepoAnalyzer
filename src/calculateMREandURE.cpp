@@ -2,6 +2,7 @@
 #include "definitions.h"
 #include <vector>
 #include <algorithm>
+#include <iostream>
 
 /**
  * ------------------------------------------------------------------------------------------------
@@ -20,6 +21,7 @@ int calculateMREandURE(std::vector<AuthorData>& all_authors, int* MRE)
 	}), all_authors.end());
 
 	if (all_authors.empty()) {
+		std::cerr << "Warning! No contributor has more than 1 day between their newest and oldest commits..." << std::endl;
 		return -1;
 	}
 
@@ -34,18 +36,30 @@ int calculateMREandURE(std::vector<AuthorData>& all_authors, int* MRE)
 	{
 		// Even number of authors, calculate the average of the two authors in the middle
 		int mean_index = (all_authors.size() / 2);
-		if (mean_index < 0 || mean_index + 1 >= all_authors.size()) {
+		if (mean_index < 0 || mean_index >= all_authors.size()) {
+			std::cerr << "ERROR! Invalid array index for the mean value" << std::endl;
 			return -1;
 		}
-		int MRE_1 = (all_authors[mean_index].lastCommit - all_authors[mean_index].firstCommit);
-		int MRE_2 = (all_authors[mean_index + 1].lastCommit - all_authors[mean_index + 1].firstCommit);
-		*MRE = (int)((MRE_1 + MRE_2) / 2);
+
+		if ((mean_index - 1) < 0 || (mean_index - 1) >= all_authors.size()) 
+		{
+			// If the other author has an invalid index, then just use the value for the previous author
+			*MRE = (all_authors[mean_index].lastCommit - all_authors[mean_index].firstCommit);
+		}
+		else
+		{
+			// Calculate the average value of the two authors in the middle
+			int MRE_1 = (all_authors[mean_index].lastCommit - all_authors[mean_index].firstCommit);
+			int MRE_2 = (all_authors[mean_index - 1].lastCommit - all_authors[mean_index - 1].firstCommit);
+			*MRE = (int)((MRE_1 + MRE_2) / 2);
+		}
 	}
 	else
 	{
 		// Odd number of authors, the mean is in the middle
 		int mean_index = (all_authors.size() / 2);
 		if (mean_index < 0 || mean_index >= all_authors.size()) {
+			std::cerr << "ERROR! Invalid array index for the mean value" << std::endl;
 			return -1;
 		}
 		*MRE = (all_authors[mean_index].lastCommit - all_authors[mean_index].firstCommit);

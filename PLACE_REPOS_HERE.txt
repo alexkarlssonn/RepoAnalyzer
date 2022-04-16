@@ -2,23 +2,9 @@
 # Place the repositories you want to analyze in this file
 # Use the full URL to the GitHub repository, and place one on each line
 #
-
-# Below is a set of smaller repositories that can be used to test the program
-
-
+# *** Below is a set of smaller repositories that can be used to test the program ***
 https://github.com/LoopPerfect/valuable
 https://github.com/fungos/cr
 https://github.com/rokups/ImNodes
-
-# Larger repos
-# https://github.com/mikke89/RmlUi
-# https://github.com/wolfpld/tracy
-# https://github.com/ocornut/imgui
-# https://github.com/urho3d/Urho3D
-# https://github.com/CedricGuillemet/ImGuizmo
-
-
-
-
 
 
