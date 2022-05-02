@@ -40,6 +40,17 @@ print("Repos that has atleast 500 MRE: " + str(len(allRepos["repos"])))
 """
 
 
+
+# Remove repos that has less than 10 contributors 
+for repo in allRepos["repos"]:
+	if repo["total_contributors"] < 10:
+		allRepos["repos"].remove(repo)
+
+print("\nAnalyzing repos with atleast 10 contributors")
+print("Repos that has atleast 10 contributors: " + str(len(allRepos["repos"])))
+
+
+
 # ==================================================================================
 # Diagram 1
 # ==================================================================================
